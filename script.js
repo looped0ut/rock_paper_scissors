@@ -12,7 +12,7 @@ function getComputerChoice(){
         c = 'paper';
     }
 
-    else if(n< 99.99){
+    else if(n< 100){
         c = 'scissors';
     }
 
