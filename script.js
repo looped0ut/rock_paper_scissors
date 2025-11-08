@@ -19,7 +19,6 @@ function getComputerChoice(){
     return c;
 }
 
-console.log(`computer choice :${getComputerChoice()}`);
 
 function getHumanChoice(){
     let h= prompt("enter your choice","");
@@ -33,4 +32,60 @@ function getHumanChoice(){
     return h;
 }
 
-console.log(`player choice :${getHumanChoice()}`);
+
+let compScore=0;
+let playerScore=0;
+
+function playRound(){
+    let huma =getHumanChoice();
+    console.log(`\nyou chose : ${huma}`);
+
+    let comp =getComputerChoice();
+    console.log(`\ncomputer chose : ${comp}\n`);
+
+    if(huma === 'rock'){
+        if(comp === 'rock'){
+            console.log('DRAW!!!!');
+        }
+        if(comp === 'paper'){
+            console.log('You lose.....PAPER BEATS ROCK');
+            compScore+=1;
+        }
+        if(comp === 'scissors'){
+            console.log('You win.....ROCK BEAT SCISSORS');
+            playerScore+=1;
+        }
+    }
+
+    if(huma === 'paper'){
+        if(comp === 'rock'){
+            console.log('You win.....PAPER BEATS ROCK');
+            playerScore+=1;
+        }
+        if(comp === 'paper'){
+            console.log('DRAW!!!!');
+        }
+        if(comp === 'scissors'){
+            console.log('You lose.....SCISSORS CUT PAPER');
+            compScore+=1;
+        }
+    }
+
+    if(huma === 'scissors'){
+        if(comp === 'rock'){
+            console.log('You lose.....ROCK BEATS SCISSORS');
+            compScore+=1;
+        }
+        if(comp === 'paper'){
+            console.log('You win.....SCISSORS CUT PAPER');
+            playerScore+=1;
+        }
+        if(comp === 'scissors'){
+            console.log('DRAW!!!!');
+        }
+    }
+    console.log(`\nPlayer\t\tComputer\n${playerScore}\t\t\t${compScore}`);
+}
+
+playRound();
+
