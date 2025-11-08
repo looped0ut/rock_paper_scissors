@@ -49,43 +49,56 @@ function playRound(){
         }
         if(comp === 'paper'){
             console.log('You lose.....PAPER BEATS ROCK');
-            compScore+=1;
+            compScore = ++compScore;
         }
         if(comp === 'scissors'){
             console.log('You win.....ROCK BEAT SCISSORS');
-            playerScore+=1;
+            playerScore = ++playerScore;
         }
     }
 
     if(huma === 'paper'){
         if(comp === 'rock'){
             console.log('You win.....PAPER BEATS ROCK');
-            playerScore+=1;
+            playerScore = ++playerScore;
         }
         if(comp === 'paper'){
             console.log('DRAW!!!!');
         }
         if(comp === 'scissors'){
             console.log('You lose.....SCISSORS CUT PAPER');
-            compScore+=1;
+            compScore = ++compScore;
         }
     }
 
     if(huma === 'scissors'){
         if(comp === 'rock'){
             console.log('You lose.....ROCK BEATS SCISSORS');
-            compScore+=1;
+            compScore = ++compScore;
         }
         if(comp === 'paper'){
             console.log('You win.....SCISSORS CUT PAPER');
-            playerScore+=1;
+            playerScore = ++playerScore;
         }
         if(comp === 'scissors'){
             console.log('DRAW!!!!');
         }
     }
     console.log(`\nPlayer\t\tComputer\n${playerScore}\t\t\t${compScore}`);
+    console.log('\n\n');
 }
 
-playRound();
+function playGame(){
+    while(playerScore !== 3 && compScore !== 3){
+        playRound();
+    }
+    if(playerScore===3){
+        console.log('Congrats You Won!!!!!')
+    }
+    if(compScore===3){
+        console.log('Sorry You Lost!!!!!')
+    }
+}
+
+playGame();
 
