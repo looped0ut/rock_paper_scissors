@@ -110,17 +110,21 @@ let clear = document.createElement("button");
 clear.textContent = "Play Again";
 
 
+function playAgain(){
 
-
-
-function playGame(){
-
-    body.appendChild(cont)
+    cont.appendChild(clear);
+    clear.addEventListener("click",function(){
+        cont.replaceChildren();
+        clear.remove();
+        playerScore = 0;
+        compScore = 0;
+        r = 1;
+    });
     
-    rock.addEventListener("click",function(){
+}
 
+function play(){
 
-    but = rock.textContent
     if(playerScore!==3 && compScore!==3){
     playRound(but)
 
@@ -129,30 +133,31 @@ function playGame(){
         result.textContent = "Congrats You won!!!!!"
         cont.appendChild(result.cloneNode(true));
 
-        cont.appendChild(clear);
-        clear.addEventListener("click",function(){
-            cont.replaceChildren();
-            clear.remove();
-            playerScore = 0;
-            compScore = 0;
-            r = 1;
-        });
+        playAgain();
     }
     if(compScore===3){
         result.style.color = "red";
         result.textContent="Sorry You Lost!!!!!";
         cont.appendChild(result.cloneNode(true));
 
-        cont.appendChild(clear);
-        clear.addEventListener("click",function(){
-            cont.replaceChildren();
-            clear.remove();
-            playerScore = 0;
-            compScore = 0;
-            r = 1;
-        });
+        playAgain();
     }
     }
+
+}
+
+
+
+
+function playGame(){
+
+    body.appendChild(cont)
+
+    
+rock.addEventListener("click",function(){
+
+    but = rock.textContent
+    play();
      
 });
 
@@ -160,89 +165,19 @@ function playGame(){
 
 paper.addEventListener("click",function(){
 
-    but = rock.textContent
-    if(playerScore!==3 && compScore!==3){
-    playRound(but)
-
-    if(playerScore===3){
-        result.style.color = "green";
-        result.textContent = "Congrats You won!!!!!"
-        cont.appendChild(result.cloneNode(true));
-
-        cont.appendChild(clear);
-        clear.addEventListener("click",function(){
-            cont.replaceChildren();
-            clear.remove();
-            playerScore = 0;
-            compScore = 0;
-            r = 1;
-        });
-    }
-    if(compScore===3){
-        result.style.color = "red";
-        result.textContent="Sorry You Lost!!!!!";
-        cont.appendChild(result.cloneNode(true));
-
-        cont.appendChild(clear);
-        clear.addEventListener("click",function(){
-            cont.replaceChildren();
-            clear.remove();
-            playerScore = 0;
-            compScore = 0;
-            r = 1;
-        });
-    }
-    }
+    but = paper.textContent
+    play();
      
 });
 
 
 scissors.addEventListener("click",function(){
 
-    but = rock.textContent
-    if(playerScore!==3 && compScore!==3){
-        
-    playRound(but)
-
-    if(playerScore===3){
-        result.style.color = "green";
-        result.textContent = "Congrats You won!!!!!"
-        cont.appendChild(result.cloneNode(true));
-
-        cont.appendChild(clear);
-        clear.addEventListener("click",function(){
-            cont.replaceChildren();
-            clear.remove();
-            playerScore = 0;
-            compScore = 0;
-            r = 1;
-        });
-    }
-    if(compScore===3){
-        result.style.color = "red";
-        result.textContent="Sorry You Lost!!!!!";
-        cont.appendChild(result.cloneNode(true));
-
-        cont.appendChild(clear);
-        clear.addEventListener("click",function(){
-            cont.replaceChildren();
-            clear.remove();
-            playerScore = 0;
-            compScore = 0;
-            r = 1;
-        });
-    }
-    }
+    but = scissors.textContent
+    play();
      
 });
 
-if(div.textContent === "Congrats You won!!!!!"){
-    div.style.color = "green";
-}
-
-if(div.textContent === "Sorry You Lost!!!!!"){
-    div.style.color = "red";
-}
 
 }
 
