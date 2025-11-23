@@ -1,5 +1,3 @@
-console.log('.....ROCK.....PAPER.....SCISSORS');
-
 function getComputerChoice(){
     let c;
     let n= Math.random() * 100;
@@ -20,85 +18,235 @@ function getComputerChoice(){
 }
 
 
-function getHumanChoice(){
-    let h= prompt("enter your choice","");
-    h = h.toLowerCase();
-
-    if (h !== 'rock'&& h !== 'scissors'&& h !== 'paper'){
-        console.warn('no cheating!!!!!!!1')
-        console.error('invalid choice');
-    }
-
-    return h;
-}
-
 
 let compScore=0;
 let playerScore=0;
+let r =1;
 
-function playRound(){
-    let huma =getHumanChoice();
-    console.log(`\nyou chose : ${huma}`);
+function playRound(huma){
+
+    round.textContent = (`ROUND ${r} :`);
+    cont.appendChild(round.cloneNode(true));
+
+    huma = huma.toLowerCase();
 
     let comp =getComputerChoice();
-    console.log(`\ncomputer chose : ${comp}\n`);
+
+    div.textContent = (`you chose : ${huma} || computer chose : ${comp}\n`);
+    cont.appendChild(div.cloneNode(true));
 
     if(huma === 'rock'){
         if(comp === 'rock'){
-            console.log('DRAW!!!!');
+            div.textContent = 'DRAW!!!!';
+            cont.appendChild(div.cloneNode(true));
         }
         if(comp === 'paper'){
-            console.log('You lose.....PAPER BEATS ROCK');
+            div.textContent = 'You lose.....PAPER BEATS ROCK';
+            cont.appendChild(div.cloneNode(true));
             compScore = ++compScore;
         }
         if(comp === 'scissors'){
-            console.log('You win.....ROCK BEAT SCISSORS');
+            div.textContent = 'You win.....ROCK BEAT SCISSORS';
+            cont.appendChild(div.cloneNode(true));
             playerScore = ++playerScore;
         }
     }
 
     if(huma === 'paper'){
         if(comp === 'rock'){
-            console.log('You win.....PAPER BEATS ROCK');
+            div.textContent = 'You win.....PAPER BEATS ROCK';
+            cont.appendChild(div.cloneNode(true));
             playerScore = ++playerScore;
         }
         if(comp === 'paper'){
-            console.log('DRAW!!!!');
+            div.textContent = 'DRAW!!!!';
+            cont.appendChild(div.cloneNode(true));
         }
         if(comp === 'scissors'){
-            console.log('You lose.....SCISSORS CUT PAPER');
+            div.textContent = 'You lose.....SCISSORS CUT PAPER';
+            cont.appendChild(div.cloneNode(true));
             compScore = ++compScore;
         }
     }
 
     if(huma === 'scissors'){
         if(comp === 'rock'){
-            console.log('You lose.....ROCK BEATS SCISSORS');
+            div.textContent = 'You lose.....ROCK BEATS SCISSORS';
+            cont.appendChild(div.cloneNode(true));
             compScore = ++compScore;
         }
         if(comp === 'paper'){
-            console.log('You win.....SCISSORS CUT PAPER');
+            div.textContent = 'You win.....SCISSORS CUT PAPER';
+            cont.appendChild(div.cloneNode(true));
             playerScore = ++playerScore;
         }
         if(comp === 'scissors'){
-            console.log('DRAW!!!!');
+            div.textContent = 'DRAW!!!!';
+            cont.appendChild(div.cloneNode(true));
         }
     }
-    console.log(`\nPlayer\t\tComputer\n${playerScore}\t\t\t${compScore}`);
-    console.log('\n\n');
+    
+    div.textContent = `PLAYER : ${playerScore} || COMPUTER : ${compScore}`;
+    cont.appendChild(div.cloneNode(true));
+    r++;
 }
+
+
+
+
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissors = document.querySelector("#scissors");
+
+
+
+let but
+let body = document.querySelector("body");
+let cont = document.createElement("div");
+let div = document.createElement("div");
+let result = document.createElement("div");
+let round = document.createElement("h3");
+let clear = document.createElement("button");
+clear.textContent = "Play Again";
+
+
+
+
 
 function playGame(){
-    while(playerScore !== 3 && compScore !== 3){
-        playRound();
-    }
+
+    body.appendChild(cont)
+    
+    rock.addEventListener("click",function(){
+
+
+    but = rock.textContent
+    if(playerScore!==3 && compScore!==3){
+    playRound(but)
+
     if(playerScore===3){
-        console.log('Congrats You Won!!!!!')
+        result.style.color = "green";
+        result.textContent = "Congrats You won!!!!!"
+        cont.appendChild(result.cloneNode(true));
+
+        cont.appendChild(clear);
+        clear.addEventListener("click",function(){
+            cont.replaceChildren();
+            clear.remove();
+            playerScore = 0;
+            compScore = 0;
+            r = 1;
+        });
     }
     if(compScore===3){
-        console.log('Sorry You Lost!!!!!')
+        result.style.color = "red";
+        result.textContent="Sorry You Lost!!!!!";
+        cont.appendChild(result.cloneNode(true));
+
+        cont.appendChild(clear);
+        clear.addEventListener("click",function(){
+            cont.replaceChildren();
+            clear.remove();
+            playerScore = 0;
+            compScore = 0;
+            r = 1;
+        });
     }
+    }
+     
+});
+
+   
+
+paper.addEventListener("click",function(){
+
+    but = rock.textContent
+    if(playerScore!==3 && compScore!==3){
+    playRound(but)
+
+    if(playerScore===3){
+        result.style.color = "green";
+        result.textContent = "Congrats You won!!!!!"
+        cont.appendChild(result.cloneNode(true));
+
+        cont.appendChild(clear);
+        clear.addEventListener("click",function(){
+            cont.replaceChildren();
+            clear.remove();
+            playerScore = 0;
+            compScore = 0;
+            r = 1;
+        });
+    }
+    if(compScore===3){
+        result.style.color = "red";
+        result.textContent="Sorry You Lost!!!!!";
+        cont.appendChild(result.cloneNode(true));
+
+        cont.appendChild(clear);
+        clear.addEventListener("click",function(){
+            cont.replaceChildren();
+            clear.remove();
+            playerScore = 0;
+            compScore = 0;
+            r = 1;
+        });
+    }
+    }
+     
+});
+
+
+scissors.addEventListener("click",function(){
+
+    but = rock.textContent
+    if(playerScore!==3 && compScore!==3){
+        
+    playRound(but)
+
+    if(playerScore===3){
+        result.style.color = "green";
+        result.textContent = "Congrats You won!!!!!"
+        cont.appendChild(result.cloneNode(true));
+
+        cont.appendChild(clear);
+        clear.addEventListener("click",function(){
+            cont.replaceChildren();
+            clear.remove();
+            playerScore = 0;
+            compScore = 0;
+            r = 1;
+        });
+    }
+    if(compScore===3){
+        result.style.color = "red";
+        result.textContent="Sorry You Lost!!!!!";
+        cont.appendChild(result.cloneNode(true));
+
+        cont.appendChild(clear);
+        clear.addEventListener("click",function(){
+            cont.replaceChildren();
+            clear.remove();
+            playerScore = 0;
+            compScore = 0;
+            r = 1;
+        });
+    }
+    }
+     
+});
+
+if(div.textContent === "Congrats You won!!!!!"){
+    div.style.color = "green";
 }
 
+if(div.textContent === "Sorry You Lost!!!!!"){
+    div.style.color = "red";
+}
+
+}
+
+
 playGame();
+
 
